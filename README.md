@@ -14,13 +14,13 @@ the coding dojo, so that we can get started right away.
   to date. You can do that in a terminal by running:
 
   ```bash
-  $ conda --version
-  conda 4.7.12
   $ conda update -y conda
   [... lots of output ...]
   Preparing transaction: done
   Verifying transaction: done
   Executing transaction: done
+  $ conda --version
+  conda 4.8.2
   $ conda init <your shell, eg zsh or bash>
   [...]
   modified      /Users/nlv19703/.zshrc
