@@ -42,7 +42,7 @@ class QLearningAgent(ReinforcementAgent):
         "You can initialize Q-values here..."
         ReinforcementAgent.__init__(self, **args)
 
-        "*** YOUR CODE HERE ***"
+        self.qvalues = {}
 
     def getQValue(self, state, action):
         """
@@ -50,8 +50,8 @@ class QLearningAgent(ReinforcementAgent):
           Should return 0.0 if we have never seen a state
           or the Q node value otherwise
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        actionMap = self.qvalues.get(state, {})
+        return actionMap.get(action, 0.0)
 
 
     def _setQValue(self, state, action, value):
@@ -60,8 +60,9 @@ class QLearningAgent(ReinforcementAgent):
           The _ in front of the function name is the Pythonic way to indicates that 
           it is a private function.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        actionMap = self.qvalues.get(state, {})
+        actionMap[action] = value
+        self.qvalues[state] = actionMap
 
 
     def computeValueFromQValues(self, state):
