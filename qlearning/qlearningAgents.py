@@ -85,8 +85,13 @@ class QLearningAgent(ReinforcementAgent):
           are no legal actions, which is the case at the terminal state,
           you should return None.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        action_map = self.qvalues.get(state, None)
+        if not action_map:
+            return None
+
+        max_value = self.computeValueFromQValues(state)
+        entries_with_max_value = filter(lambda (action, value): value >= max_value, action_map.items())
+        return random.choice(entries_with_max_value)[0]
 
     def getAction(self, state):
         """
