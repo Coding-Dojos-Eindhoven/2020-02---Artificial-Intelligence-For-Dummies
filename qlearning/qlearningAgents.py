@@ -121,8 +121,9 @@ class QLearningAgent(ReinforcementAgent):
           NOTE: You should never call this function,
           it will be called on your behalf
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        bellman = reward + self.discount * self.computeValueFromQValues(nextState)
+        new_value = (1-self.alpha) * self.getQValue(state, action) + self.alpha * bellman
+        self._setQValue(state, action, new_value)
 
     def getPolicy(self, state):
         return self.computeActionFromQValues(state)
