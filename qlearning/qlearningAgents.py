@@ -72,11 +72,12 @@ class QLearningAgent(ReinforcementAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return a value of 0.0.
         """
-        action_map = self.qvalues.get(state, None)
-        if not action_map:
+        legal_actions = self.getLegalActions(state)
+        if not legal_actions:
             return 0.0
 
-        return max(action_map.values())
+        values = map(lambda action: self.getQValue(state, action), legal_actions)
+        return max(values)
 
 
     def computeActionFromQValues(self, state):
@@ -85,12 +86,13 @@ class QLearningAgent(ReinforcementAgent):
           are no legal actions, which is the case at the terminal state,
           you should return None.
         """
-        action_map = self.qvalues.get(state, None)
-        if not action_map:
+        legal_actions = self.getLegalActions(state)
+        if not legal_actions:
             return None
 
         max_value = self.computeValueFromQValues(state)
-        entries_with_max_value = filter(lambda (action, value): value >= max_value, action_map.items())
+        action_map = map(lambda action: (action, self.getQValue(state, action)), legal_actions)
+        entries_with_max_value = filter(lambda (action, value): value >= max_value, action_map)
         return random.choice(entries_with_max_value)[0]
 
     def getAction(self, state):
