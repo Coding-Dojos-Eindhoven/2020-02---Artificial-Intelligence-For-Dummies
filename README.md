@@ -33,19 +33,25 @@ the coding dojo, so that we can get started right away.
 
 These setup instructions assume that you'll be using [PyCharm Community
 Edition][PycharmCE]. (If you want to use something else, make sure you know how
-to get everything up and running using that IDE/Editor.) After installing Pycharm, follow these steps:
+to get everything up and running using that IDE/Editor.) After installing
+Pycharm, follow these steps:
 
-- In the Welcome screen, choose 'Create New Project'
-- Pick a folder where you want to store the project, and a new folder named `qlearning` inside that folder
-- Expand the "Project Interpreter: New Conda environment" settings
-- Make sure "New environment using: Conda" is selected
-- Change the Pyton version to 2.7
-- Click "Create"
-- PyCharm will create the Conda environment; this may take a while
+- In the Welcome screen, choose 'Create New Project'.
+- Pick a folder where you want to store the project, and a new folder named
+  `qlearning` inside that folder.
+- Expand the "Project Interpreter: New Conda environment" settings.
+- Make sure "New environment using: Conda" is selected.
+- Change the Pyton version to 2.7.
+- Click "Create".
+- PyCharm will create the Conda environment; this may take a while.
 - In the steps above, you cloned a repo. It has a folder `reinforcement`. Copy
-  all files and folders inside of that to the new project folder you just created.
+  all files and folders inside of that to the new project folder you just
+  created. So there should now (amongst others) be a file `requirements.txt`
+  inside your `qlearning` folder.
 - Open a terminal inside PyCharm. This should cause the conda environment to be
-  automatically activated inside that terminal. If you're not sure: `conda info` should say that the active environment is `qlearning`. (If it's not active, run `conda activate qlearning`.)
+  automatically activated inside that terminal. If you're not sure: `conda info`
+  should say that the active environment is `qlearning`. (If it's not active,
+  run `conda activate qlearning`.)
 - Run the following command to install the dependencies:
 
   ```bash
