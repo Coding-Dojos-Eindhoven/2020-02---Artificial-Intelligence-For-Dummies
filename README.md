@@ -68,5 +68,12 @@ Pycharm, follow these steps:
   ========================= 1 passed in 0.03s =========================
   ```
 
+  If you get errors at this point, you should verify that you are using the
+  correct version of `python` and `pytest`. In the output of `pytest` you can
+  see both. If this is incorrect, run `which pytest` to see which one you are
+  using. It should be the one inside the conda `qlearning` env; if not, run
+  `rehash` or open a new terminal and try again. If that still fails, make sure
+  that conda comes first in your path.
+
 [Miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [pycharmCE]: https://www.jetbrains.com/pycharm/download
