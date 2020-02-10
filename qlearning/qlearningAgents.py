@@ -50,8 +50,8 @@ class QLearningAgent(ReinforcementAgent):
           Should return 0.0 if we have never seen a state
           or the Q node value otherwise
         """
-        actionMap = self.qvalues.get(state, {})
-        return actionMap.get(action, 0.0)
+        action_map = self.qvalues.get(state, {})
+        return action_map.get(action, 0.0)
 
 
     def _setQValue(self, state, action, value):
@@ -60,9 +60,9 @@ class QLearningAgent(ReinforcementAgent):
           The _ in front of the function name is the Pythonic way to indicates that 
           it is a private function.
         """
-        actionMap = self.qvalues.get(state, {})
-        actionMap[action] = value
-        self.qvalues[state] = actionMap
+        action_map = self.qvalues.get(state, {})
+        action_map[action] = value
+        self.qvalues[state] = action_map
 
 
     def computeValueFromQValues(self, state):
@@ -72,11 +72,11 @@ class QLearningAgent(ReinforcementAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return a value of 0.0.
         """
-        actionMap = self.qvalues.get(state, None)
-        if not actionMap:
+        action_map = self.qvalues.get(state, None)
+        if not action_map:
             return 0.0
 
-        return max(actionMap.values())
+        return max(action_map.values())
 
 
     def computeActionFromQValues(self, state):
