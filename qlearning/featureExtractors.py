@@ -77,6 +77,8 @@ class SimpleExtractor(FeatureExtractor):
         food = state.getFood()
         walls = state.getWalls()
         ghosts = state.getGhostPositions()
+        nonScaredGhosts = [s.getPosition() for s in filter(lambda agentState: agentState.scaredTimer <= 1, state.getGhostStates())]
+        scaredGhosts = [s.getPosition() for s in filter(lambda agentState: agentState.scaredTimer > 1, state.getGhostStates())]
 
         features = util.Counter()
 
@@ -88,7 +90,12 @@ class SimpleExtractor(FeatureExtractor):
         next_x, next_y = int(x + dx), int(y + dy)
 
         # count the number of ghosts 1-step away
-        features["#-of-ghosts-1-step-away"] = sum((next_x, next_y) in Actions.getLegalNeighbors(g, walls) for g in ghosts)
+        features["#-of-ghosts-1-step-away"] = sum((next_x, next_y) in Actions.getLegalNeighbors(g, walls) for g in nonScaredGhosts)
+
+        if not features["#-of-ghosts-1-step-away"]:
+            numScaredGhostsCloseBy = sum((next_x, next_y) in Actions.getLegalNeighbors(g, walls) for g in scaredGhosts)
+            if numScaredGhostsCloseBy > 0:
+                features["eats-ghost"] = 1.0
 
         # if there is no danger of ghosts then add the food feature
         if not features["#-of-ghosts-1-step-away"] and food[next_x][next_y]:
